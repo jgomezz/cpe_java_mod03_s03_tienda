@@ -5,13 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.edu.tecsup.tienda.domain.Categoria;
 import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.services.CategoriaService;
 import pe.edu.tecsup.tienda.services.ProductoService;
 
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -39,13 +42,29 @@ public class ProductoController {
 
         model.addAttribute("categorias", this.categoriaService.findAll());
 
-        model.addAttribute("producto",
-                            Producto.builder()
-                                    .categoria(Categoria.builder()
-                                                        .build())
-                                    .build());
+        Producto producto = Producto.builder()
+                .categoria(Categoria.builder()
+                        .build())
+                .build();
+
+        log.info(producto.toString());
+
+        model.addAttribute("producto",producto);
 
         return "/productos/create";
+
+    }
+
+    @PostMapping("/store")
+    public String store(@ModelAttribute("producto") Producto producto, Errors errors,
+                        @RequestParam("file") MultipartFile file,
+                        RedirectAttributes redirectAttrs) throws Exception{
+
+        log.info(producto.toString());
+
+        this.productoService.save(producto);
+
+        return "redirect:/productos";
 
     }
 

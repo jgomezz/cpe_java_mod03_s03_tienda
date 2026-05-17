@@ -13,7 +13,7 @@ public interface ProductoService {
 
     ProductoEntity findById(Long id);
 
-    void save(ProductoEntity producto);
+    void save(Producto producto);
 
     void deleteById(Long id);
 

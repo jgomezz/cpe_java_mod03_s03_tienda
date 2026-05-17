@@ -9,6 +9,7 @@ import pe.edu.tecsup.tienda.mapper.ProductoMapper;
 import pe.edu.tecsup.tienda.repositories.ProductoRepository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,9 +64,17 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public void save(ProductoEntity producto) {
+    public void save(Producto producto) {
         log.info("call save()");
-        productoRepository.save(producto);
+
+        // Defino valores por defecto
+        producto.setCreado(new Date());
+        producto.setEstado(1); // ACTIVO
+
+        // Mapper
+        ProductoEntity productoEntity = ProductoMapper.toEntity(producto);
+
+        productoRepository.save(productoEntity);
     }
 
     @Override

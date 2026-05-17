@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pe.edu.tecsup.tienda.domain.Categoria;
 import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.entities.CategoriaEntity;
 import pe.edu.tecsup.tienda.entities.ProductoEntity;
@@ -68,9 +69,9 @@ class ProductoServiceTest {
         log.info("Total antes de insertar: {}", totalAntes);
 
         // 2. Crear un producto y grabarlo
-        var producto = ProductoEntity.builder()
+        var producto = Producto.builder()
                 .categoria(
-                        CategoriaEntity.builder()
+                        Categoria.builder()
                                 .id(1L)
                                 .build()
                 ) // CategoriaEntity de procesadores
