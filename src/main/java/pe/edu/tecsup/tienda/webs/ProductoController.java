@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pe.edu.tecsup.tienda.domain.Categoria;
 import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.services.CategoriaService;
 import pe.edu.tecsup.tienda.services.ProductoService;
@@ -37,6 +38,12 @@ public class ProductoController {
     public String create(Model model) {
 
         model.addAttribute("categorias", this.categoriaService.findAll());
+
+        model.addAttribute("producto",
+                            Producto.builder()
+                                    .categoria(Categoria.builder()
+                                                        .build())
+                                    .build());
 
         return "/productos/create";
 
