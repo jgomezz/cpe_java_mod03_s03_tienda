@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pe.edu.tecsup.tienda.domain.Producto;
+import pe.edu.tecsup.tienda.services.CategoriaService;
 import pe.edu.tecsup.tienda.services.ProductoService;
 
 import java.util.List;
@@ -20,6 +21,8 @@ public class ProductoController {
 
     private final ProductoService productoService;
 
+    private final CategoriaService categoriaService;
+
     @GetMapping()
     public String index(Model model) {
 
@@ -28,6 +31,15 @@ public class ProductoController {
         model.addAttribute("productos", productos);
 
         return "/productos/index";
+    }
+
+    @GetMapping("/create")
+    public String create(Model model) {
+
+        model.addAttribute("categorias", this.categoriaService.findAll());
+
+        return "/productos/create";
+
     }
 
 }
