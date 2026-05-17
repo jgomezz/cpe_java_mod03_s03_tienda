@@ -10,7 +10,7 @@ import java.util.Date;
 public class Producto {
 
     private Long id;
-//    private CategoriaEntity categoria;
+    private Categoria categoria;
     private String nombre;
     private String descripcion;
     private Double precio;

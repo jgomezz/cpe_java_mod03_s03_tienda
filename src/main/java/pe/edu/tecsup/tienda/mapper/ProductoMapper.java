@@ -15,6 +15,7 @@ public class ProductoMapper {
                 .stock(entity.getStock())
                 .estado(entity.getEstado())
                 .creado(entity.getCreado())
+                .categoria(CategoriaMapper.toDomain(entity.getCategoria()))
                 .build();
     }
 
@@ -27,6 +28,7 @@ public class ProductoMapper {
                 .stock(domain.getStock())
                 .estado(domain.getEstado())
                 .creado(domain.getCreado())
+                .categoria(CategoriaMapper.toEntity(domain.getCategoria()))
                 .build();
     }
 }
