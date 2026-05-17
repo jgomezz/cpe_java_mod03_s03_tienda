@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.entities.ProductoEntity;
+import pe.edu.tecsup.tienda.mapper.ProductoMapper;
 import pe.edu.tecsup.tienda.repositories.ProductoRepository;
 
 import java.util.ArrayList;
@@ -23,29 +24,20 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> findAll() {
         log.info("Iniciando búsqueda de productos");
 
-        /*
-        List<Producto> productos = this.productoRepository.findAll().stream()
-                .map(entity -> new Producto(
-                        entity.getId(),
-                        entity.getNombre(),
-                        entity.getPrecio(),
-                        entity.getCategoria().getNombre()
-                ))
-                .toList();
-        */
         List<ProductoEntity> productosEntity = this.productoRepository.findAll();
 
+        /*
         List<Producto> productos = new ArrayList<>();
 
         for (ProductoEntity entity : productosEntity) {
-            Producto producto = Producto.builder()
-                    .id(entity.getId())
-                    .nombre(entity.getNombre())
-                    .descripcion(entity.getDescripcion())
-                    .precio(entity.getPrecio())
-                    .build();
+            Producto producto = ProductoMapper.toDomain(entity);
             productos.add(producto);
         }
+        */
+
+        List<Producto> productos = productosEntity.stream()
+                .map(ProductoMapper::toDomain)
+                .toList();
 
         return productos;
     }
