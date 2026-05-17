@@ -50,13 +50,13 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public ProductoEntity findById(Long id) {
+    public Producto findById(Long id) {
         log.info("call findById()");
 
         Optional<ProductoEntity> prod = productoRepository.findById(id);
 
         if (prod.isPresent()) {
-            return prod.get();
+            return ProductoMapper.toDomain(prod.get());
         } else {
             throw new RuntimeException("ProductoEntity no encontrado");
         }
@@ -84,9 +84,12 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public void update(ProductoEntity producto) {
+    public void update(Producto producto) {
         log.info("call update()");
-        productoRepository.save(producto);
+
+        ProductoEntity productoEntity = ProductoMapper.toEntity(producto);
+
+        productoRepository.save(productoEntity);
     }
 
 }

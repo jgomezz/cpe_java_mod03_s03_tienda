@@ -51,7 +51,7 @@ class ProductoServiceTest {
         Double EXPECTED_PRECIO = 1479.99;
         Integer EXPECTED_STOCK = 6;
 
-        ProductoEntity producto =
+        Producto producto =
                 this.productoService.findById(ID);
         log.info(producto.toString());
 
@@ -102,7 +102,7 @@ class ProductoServiceTest {
         String NUEVO_NOMBRE = "Kingstone UPDATE";
 
         // 1. Buscar el producto
-        ProductoEntity producto = this.productoService.findById(ID_PROD_UPDATE);
+        Producto producto = this.productoService.findById(ID_PROD_UPDATE);
 
         // 2. Hacer los cambios en la entidad producto
         producto.setNombre(NUEVO_NOMBRE);

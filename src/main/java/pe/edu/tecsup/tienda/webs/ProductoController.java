@@ -68,4 +68,39 @@ public class ProductoController {
 
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) throws Exception {
+
+
+        Producto producto = this.productoService.findById(id);
+        model.addAttribute("producto", producto);
+        model.addAttribute("categorias", this.categoriaService.findAll());
+
+        return "productos/edit";
+    }
+
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute("producto") Producto producto,
+                         Errors errors,
+                         @RequestParam("file") MultipartFile file,
+                         RedirectAttributes redirectAttrs) throws Exception{
+
+            this.productoService.save(producto);
+
+        return "redirect:/productos";
+
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id, RedirectAttributes
+            redirectAttrs) throws Exception {
+
+        log.info("edit delete(id: " + id + ")");
+
+        this.productoService.deleteById(id);
+
+        return "redirect:/productos";
+    }
+
 }

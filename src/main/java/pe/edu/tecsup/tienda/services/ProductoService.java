@@ -11,11 +11,11 @@ public interface ProductoService {
 
     List<ProductoEntity> findByName(String nombre);
 
-    ProductoEntity findById(Long id);
+    Producto findById(Long id);
 
     void save(Producto producto);
 
     void deleteById(Long id);
 
-    void update(ProductoEntity producto);
+    void update(Producto producto);
 }
