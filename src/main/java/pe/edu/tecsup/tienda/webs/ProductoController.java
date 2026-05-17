@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pe.edu.tecsup.tienda.entities.ProductoEntity;
+import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.services.ProductoService;
 
 import java.util.List;
@@ -23,7 +23,7 @@ public class ProductoController {
     @GetMapping()
     public String index(Model model) {
 
-        List<ProductoEntity> productos = this.productoService.findAll();  // TO DO
+        List<Producto> productos = this.productoService.findAll();  // TO DO
 
         model.addAttribute("productos", productos);
 

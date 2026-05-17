@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.entities.CategoriaEntity;
 import pe.edu.tecsup.tienda.entities.ProductoEntity;
 
@@ -21,7 +22,7 @@ class ProductoServiceTest {
     @Test
     void testFindAll() {
 
-        List<ProductoEntity> productos =
+        List<Producto> productos =
                 this.productoService.findAll();
 
         productos.forEach(item -> { log.info(item.toString()); });
@@ -128,15 +129,16 @@ class ProductoServiceTest {
 
 
         // 1. Obtener cuantos productos existen
-        List<ProductoEntity> productos = this.productoService.findAll();
+        List<Producto> productos = this.productoService.findAll();
         int totalAntes = productos.size();
 
         if (productos.isEmpty())
             return; // test pass
 
         // 2. Obtener el último producto de la lista
-        ProductoEntity ultimoProducto =
+        Producto ultimoProducto =
                 productos.get(productos.size() - 1);
+
 
         // 3. Borrar el producto identificado en el paso anterior
         this.productoService.deleteById(ultimoProducto.getId());

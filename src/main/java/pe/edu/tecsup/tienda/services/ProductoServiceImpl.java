@@ -3,9 +3,11 @@ package pe.edu.tecsup.tienda.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.entities.ProductoEntity;
 import pe.edu.tecsup.tienda.repositories.ProductoRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +20,34 @@ public class ProductoServiceImpl implements ProductoService {
     private final ProductoRepository productoRepository;
 
     @Override
-    public List<ProductoEntity> findAll() {
+    public List<Producto> findAll() {
         log.info("Iniciando búsqueda de productos");
-        return this.productoRepository.findAll();
+
+        /*
+        List<Producto> productos = this.productoRepository.findAll().stream()
+                .map(entity -> new Producto(
+                        entity.getId(),
+                        entity.getNombre(),
+                        entity.getPrecio(),
+                        entity.getCategoria().getNombre()
+                ))
+                .toList();
+        */
+        List<ProductoEntity> productosEntity = this.productoRepository.findAll();
+
+        List<Producto> productos = new ArrayList<>();
+
+        for (ProductoEntity entity : productosEntity) {
+            Producto producto = Producto.builder()
+                    .id(entity.getId())
+                    .nombre(entity.getNombre())
+                    .descripcion(entity.getDescripcion())
+                    .precio(entity.getPrecio())
+                    .build();
+            productos.add(producto);
+        }
+
+        return productos;
     }
 
     @Override
