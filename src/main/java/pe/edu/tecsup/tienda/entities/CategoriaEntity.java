@@ -12,7 +12,7 @@ import java.util.List;
 @ToString(exclude = "productos")
 @Entity
 @Table(name="categorias")
-public class Categoria {
+public class CategoriaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,6 @@ public class Categoria {
     private Integer orden;
 
     @OneToMany(mappedBy  = "categoria")
-    private List<Producto> productos;
+    private List<ProductoEntity> productos;
 
 }

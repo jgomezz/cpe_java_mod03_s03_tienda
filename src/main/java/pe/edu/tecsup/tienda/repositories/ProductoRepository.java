@@ -1,25 +1,25 @@
 package pe.edu.tecsup.tienda.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pe.edu.tecsup.tienda.entities.Producto;
+import pe.edu.tecsup.tienda.entities.ProductoEntity;
 
 import java.util.List;
 
 public interface ProductoRepository
-        extends JpaRepository<Producto, Long> {
+        extends JpaRepository<ProductoEntity, Long> {
 
-    List<Producto> findByNombre(String name);
+    List<ProductoEntity> findByNombre(String name);
 
 
     /*
-    List<Producto> findAll();
+    List<ProductoEntity> findAll();
 
-    List<Producto> findByName(String name);
+    List<ProductoEntity> findByName(String name);
 
 
-    void save(Producto producto);
+    void save(ProductoEntity producto);
 
-    void update(Producto producto);
+    void update(ProductoEntity producto);
 
     void deleteById(Long id);
 */

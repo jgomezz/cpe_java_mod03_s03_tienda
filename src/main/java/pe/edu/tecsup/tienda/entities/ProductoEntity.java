@@ -13,7 +13,7 @@ import java.util.Date;
 @ToString(exclude = "categoria")
 @Entity
 @Table(name="productos")
-public class Producto {
+public class ProductoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Producto {
     //private Long categorias_id;
     @ManyToOne
     @JoinColumn(name="categorias_id")
-    private Categoria categoria;
+    private CategoriaEntity categoria;
 
     // findBy
 

@@ -1,20 +1,20 @@
 package pe.edu.tecsup.tienda.services;
 
-import pe.edu.tecsup.tienda.entities.Producto;
+import pe.edu.tecsup.tienda.entities.ProductoEntity;
 
 import java.util.List;
 
 public interface ProductoService {
 
-    List<Producto> findAll();
+    List<ProductoEntity> findAll();
 
-    List<Producto> findByName(String nombre);
+    List<ProductoEntity> findByName(String nombre);
 
-    Producto findById(Long id);
+    ProductoEntity findById(Long id);
 
-    void save(Producto producto);
+    void save(ProductoEntity producto);
 
     void deleteById(Long id);
 
-    void update(Producto producto);
+    void update(ProductoEntity producto);
 }

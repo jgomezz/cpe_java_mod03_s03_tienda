@@ -3,7 +3,7 @@ package pe.edu.tecsup.tienda.services;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pe.edu.tecsup.tienda.entities.Producto;
+import pe.edu.tecsup.tienda.entities.ProductoEntity;
 import pe.edu.tecsup.tienda.repositories.ProductoRepository;
 
 import java.util.List;
@@ -18,33 +18,33 @@ public class ProductoServiceImpl implements ProductoService {
     private final ProductoRepository productoRepository;
 
     @Override
-    public List<Producto> findAll() {
+    public List<ProductoEntity> findAll() {
         log.info("Iniciando búsqueda de productos");
         return this.productoRepository.findAll();
     }
 
     @Override
-    public List<Producto> findByName(String nombre) {
+    public List<ProductoEntity> findByName(String nombre) {
         log.info("call findByName()");
         return productoRepository.findByNombre(nombre);
     }
 
     @Override
-    public Producto findById(Long id) {
+    public ProductoEntity findById(Long id) {
         log.info("call findById()");
 
-        Optional<Producto> prod = productoRepository.findById(id);
+        Optional<ProductoEntity> prod = productoRepository.findById(id);
 
         if (prod.isPresent()) {
             return prod.get();
         } else {
-            throw new RuntimeException("Producto no encontrado");
+            throw new RuntimeException("ProductoEntity no encontrado");
         }
 
     }
 
     @Override
-    public void save(Producto producto) {
+    public void save(ProductoEntity producto) {
         log.info("call save()");
         productoRepository.save(producto);
     }
@@ -56,7 +56,7 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public void update(Producto producto) {
+    public void update(ProductoEntity producto) {
         log.info("call update()");
         productoRepository.save(producto);
     }

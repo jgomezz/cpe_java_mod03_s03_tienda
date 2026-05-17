@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pe.edu.tecsup.tienda.entities.Categoria;
-import pe.edu.tecsup.tienda.entities.Producto;
+import pe.edu.tecsup.tienda.entities.CategoriaEntity;
+import pe.edu.tecsup.tienda.entities.ProductoEntity;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ class ProductoServiceTest {
     @Test
     void testFindAll() {
 
-        List<Producto> productos =
+        List<ProductoEntity> productos =
                 this.productoService.findAll();
 
         productos.forEach(item -> { log.info(item.toString()); });
@@ -33,10 +33,10 @@ class ProductoServiceTest {
     @Test
     void testFindByName() {
 
-        List<Producto> productos =
+        List<ProductoEntity> productos =
                 this.productoService.findByName("AMD");
 
-        for(Producto producto : productos) log.info(producto.toString());
+        for(ProductoEntity producto : productos) log.info(producto.toString());
 
         assertEquals(false, productos.isEmpty());
     }
@@ -49,7 +49,7 @@ class ProductoServiceTest {
         Double EXPECTED_PRECIO = 1479.99;
         Integer EXPECTED_STOCK = 6;
 
-        Producto producto =
+        ProductoEntity producto =
                 this.productoService.findById(ID);
         log.info(producto.toString());
 
@@ -67,12 +67,12 @@ class ProductoServiceTest {
         log.info("Total antes de insertar: {}", totalAntes);
 
         // 2. Crear un producto y grabarlo
-        var producto = Producto.builder()
+        var producto = ProductoEntity.builder()
                 .categoria(
-                        Categoria.builder()
+                        CategoriaEntity.builder()
                                 .id(1L)
                                 .build()
-                ) // Categoria de procesadores
+                ) // CategoriaEntity de procesadores
                 .nombre("GTX-5070")
                 .descripcion("GPU para gaming de alta gama")
                 .precio(1500.00)
@@ -100,7 +100,7 @@ class ProductoServiceTest {
         String NUEVO_NOMBRE = "Kingstone UPDATE";
 
         // 1. Buscar el producto
-        Producto producto = this.productoService.findById(ID_PROD_UPDATE);
+        ProductoEntity producto = this.productoService.findById(ID_PROD_UPDATE);
 
         // 2. Hacer los cambios en la entidad producto
         producto.setNombre(NUEVO_NOMBRE);
@@ -128,14 +128,14 @@ class ProductoServiceTest {
 
 
         // 1. Obtener cuantos productos existen
-        List<Producto> productos = this.productoService.findAll();
+        List<ProductoEntity> productos = this.productoService.findAll();
         int totalAntes = productos.size();
 
         if (productos.isEmpty())
             return; // test pass
 
         // 2. Obtener el último producto de la lista
-        Producto ultimoProducto =
+        ProductoEntity ultimoProducto =
                 productos.get(productos.size() - 1);
 
         // 3. Borrar el producto identificado en el paso anterior
