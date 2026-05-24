@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pe.edu.tecsup.tienda.domain.Categoria;
-import pe.edu.tecsup.tienda.entities.CategoriaEntity;
 import pe.edu.tecsup.tienda.mapper.CategoriaMapper;
-import pe.edu.tecsup.tienda.mapper.ProductoMapper;
 import pe.edu.tecsup.tienda.repositories.CategoriaRepository;
 
 import java.util.List;

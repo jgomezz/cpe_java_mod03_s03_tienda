@@ -14,7 +14,6 @@ import pe.edu.tecsup.tienda.domain.Producto;
 import pe.edu.tecsup.tienda.services.CategoriaService;
 import pe.edu.tecsup.tienda.services.ProductoService;
 
-import java.util.Date;
 import java.util.List;
 
 @Slf4j

@@ -8,7 +8,6 @@ import pe.edu.tecsup.tienda.entities.ProductoEntity;
 import pe.edu.tecsup.tienda.mapper.ProductoMapper;
 import pe.edu.tecsup.tienda.repositories.ProductoRepository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
