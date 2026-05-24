@@ -14,7 +14,7 @@ public class Rol  implements GrantedAuthority {
     private Long id;
     private String nombre;
 
-    // Methodos de GrantedAuthority
+    // Metodos de GrantedAuthority
 
     @Override
     public String getAuthority() {
